@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"
+    <title>Document</title>
+
+
+</head>
+<body>
+    <script>
+        var colorArray = ["blue","cyan","gold","gray","green", "magenta", "orange","red","white", "yellow"];
+        colorArray.sort();
+
+        function do_game()
+        {
+            var target_index;
+            target_index = Math.random() * 9;
+            return  target_index = Math.ceil(target_index);
+        }   
+        var target = do_game();
+        alert(target);
+
+        var Selected = colorArray[target-1];
+        var guess = true;
+        var counter = 1;
+        function check_game(UserInput)
+        {
+            if(colorArray.indexOf(UserInput) == -1)
+            {
+                return "Sorry, I don't recognised your color. \n\n Please try again";
+            }
+            else if(UserInput > Selected)
+            {
+                alert("Sorry, your guess is not correct! \n\n Alphabetically higher than mine \n\n Please try again.");
+            }
+            else if(UserInput < Selected)
+            {
+               alert("Sorry, your guess is not correct! \n\n Alphabetically lower than mine \n\n Please try again.");
+            }
+            else if(UserInput == Selected)
+            {
+                myBody=document.getElementsByTagName("body")[0];
+                myBody.style.background = Selected;
+                alert("Congratulations! You have guessed the color! \n\n It took you " + counter + " guesses to finish the game! \n\n You can see the colour in the background");
+                guess = false;
+            }
+        }
+
+        while(guess)
+        {
+            var UserInput = prompt("I am thinking of one of these colors: \n\n blue, cyan, gold, gray, green, magenta,orange, red, white, yellow \n\n What color am I thinking of?");
+            check_game(UserInput);
+            counter++;
+        }
+        
+        console.log(colorArray);
+    </script>    
+</body>
+</html>
